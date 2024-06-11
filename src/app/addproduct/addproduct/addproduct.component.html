@@ -1,0 +1,69 @@
+<div class="container mt-5">
+    <h4>Main information</h4>
+    <form>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="name" class="form-label">Name (German only)</label>
+          <input type="text" class="form-control" id="name" placeholder="">
+        </div>
+        <div class="col-md-6">
+          <label for="category" class="form-label">Category</label>
+          <select class="form-select" id="category">
+            <option selected>Select</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-12">
+          <label for="description" class="form-label">Description (German only)</label>
+          <textarea class="form-control" id="description" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="deliveryPrice" class="form-label">Delivery price</label>
+          <div class="input-group">
+            <span class="input-group-text">€</span>
+            <input type="text" class="form-control" id="deliveryPrice">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="pickupPrice" class="form-label">Pickup price</label>
+          <div class="input-group">
+            <span class="input-group-text">€</span>
+            <input type="text" class="form-control" id="pickupPrice">
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="itemType" class="form-label">Item type</label>
+          <select class="form-select" id="itemType">
+            <option selected>Select</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="allergens" class="form-label">Allergens</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="allergens" placeholder="" readonly>
+            <button class="btn btn-outline-secondary" type="button" routerLink="/allergene">
+              <i class="bi bi-pencil"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+  
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
