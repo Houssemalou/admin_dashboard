@@ -1,6 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
+  standalone:true,
+  imports:[CommonModule, FormsModule, ReactiveFormsModule,],
   selector: 'app-allergens-modal',
   templateUrl: './allergens-modal.component.html',
   styleUrls: ['./allergens-modal.component.css']

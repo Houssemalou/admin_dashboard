@@ -5,6 +5,8 @@ import { SignInModel } from '../models/client.model';
 import { LoginService } from './services/login.service';
 
 @Component({
+  standalone:true,
+  imports:[],
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
