@@ -4,11 +4,11 @@ export interface SignInModel {
  id:number|null;
  firstname:string;
  lastname:string;
-email: string;
-MotDePasse: string;
-phonenumber:number;
-creationDate:Date|null;
-roles?: Role[];
+  email: string;
+  MotDePasse: string;
+  phonenumber:number;
+  creationDate:Date|null;
+  roles?: Role[];
 
 }
 interface LoginResponse {

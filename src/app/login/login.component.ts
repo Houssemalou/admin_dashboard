@@ -1,72 +1,57 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SignInModel } from '../models/client.model';
 import { LoginService } from './services/login.service';
+import { UserLogin } from '../models/userLogin';
+import { UserService } from '../services/userService/user.service';
+
+
 
 @Component({
   standalone:true,
-  imports:[],
+  imports:[ FormsModule, ReactiveFormsModule,],
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent implements OnInit {
-  loginForm: FormGroup = this.formBuilder.group({
-    username: ['', Validators.required],
-    password: ['', Validators.required]
+export class LoginComponent {
+  
+  authenticatedUser!: UserLogin;
+  submitted: boolean = false;
+  errorMessage!: string | undefined;
+  response!: string;
+  
+  
+  constructor(private userService : UserService,private router : Router){}
+  
+  form = new FormGroup({
+   email: new FormControl('', [Validators.required, Validators.email]),
+   password: new FormControl('', [Validators.required, Validators.minLength(8)]),
   });
-  loading = false;
-  submitted = false;
-  returnUrl: string="";
-  SignInObj: SignInModel = {
-    id: null,
-    lastname: '',
-    firstname: '',
-    email: '',
-    MotDePasse: '',
-    phonenumber: 0,
-    creationDate:null,
- 
 
-  
-  };
-  errorMessage: string | undefined;
-  constructor(
-      private formBuilder: FormBuilder,
-      private route: ActivatedRoute,
-      private router: Router,
-      private auth:LoginService
-  
-  ) {
 
-  }
-
-  ngOnInit() {
-    
-      // get return url from route parameters or default to '/'
-      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-  }
-
-  // convenience getter for easy access to form fields
-  get f() { return this.loginForm.controls; }
-
-  onSubmit() {
-    this.auth.login(this.SignInObj).subscribe(
-      response => {  
-        alert('Login success!');
-        // this.auth.storeToken(response.token);
-        // this.router.navigateByUrl('/shop');
-      },
-      error => {
-        if (error.status === 400) {
-          this.errorMessage = 'Bad Request';
-        } else if (error.status === 404) {
-          this.errorMessage = 'User not found';
-        } else {
-          this.errorMessage = 'An unexpected error occurred';
-        }
-      }
-    );
+  login(){
+    this.submitted = true;
+    const user: UserLogin = {
+      email:this.form.value.email,
+      password: this.form.value.password
+    };
+    if (this.form.invalid) {
+        return;
+    }else{
+      this.userService.login(user).subscribe(
+        response => {
+          if (response) {
+            console.log(response.token);
+            // Successfully logged in, redirect to home page or any other page
+            //this.router.navigate(['/home']);
+          } else {
+            // Show error message
+            this.errorMessage = response.message;
+          }
+        });
+      
+    }
   }
 }

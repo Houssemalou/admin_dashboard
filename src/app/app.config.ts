@@ -5,7 +5,10 @@ import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes,withComponentInputBinding()), provideHttpClient(), provideAnimationsAsync(),provideNativeDateAdapter()]
+  providers: [provideRouter(routes,withComponentInputBinding()), provideHttpClient(), provideAnimationsAsync(),provideNativeDateAdapter(),BrowserModule,
+  BrowserAnimationsModule ]
 };
