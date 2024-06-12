@@ -23,7 +23,7 @@ export class UserDetailsComponent implements OnInit {
     firstName : "alouka",
     lastName:"denidoph",
     email:"aloukadenidoph@gmail.com",
-    role:Role.ADMIN,
+    role:Role.USER,
     creationDate: new Date(24-2-2024)
   },
   {

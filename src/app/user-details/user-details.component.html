@@ -33,10 +33,7 @@
                 <th mat-header-cell *matHeaderCellDef>Action</th>
                 <td mat-cell *matCellDef="let element">
                     <div class="action-btn">
-                        <button *ngIf="element.role === 1"  type="button" class="btn btn-outline-info">Send Email</button>
-                    </div>
-                    <div class="action-btn">
-                        <button *ngIf="element.role === 0"  type="button" class="btn btn-outline-info">Delete</button>
+                        <button type="button" class="btn btn-outline-info">Send Email</button>
                     </div>
                 </td>
             </ng-container>
