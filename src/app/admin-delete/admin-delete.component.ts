@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { UserService } from '../services/userService/user.service';
+
 
 @Component({
   selector: 'app-admin-delete',
@@ -13,8 +13,7 @@ import { UserService } from '../services/userService/user.service';
 export class AdminDeleteComponent implements OnInit {
   
   inputData : any;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private ref: MatDialogRef<AdminDeleteComponent>, 
-  private userService: UserService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private ref: MatDialogRef<AdminDeleteComponent>) {
 
 }
   ngOnInit(): void {
