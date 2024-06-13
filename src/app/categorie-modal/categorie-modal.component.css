@@ -1,0 +1,12 @@
+.btn-transparent {
+    background-color: transparent;
+    border: 1px solid #6c757d; /* Bootstrap secondary color */
+    color: #6c757d;
+  }
+  .btn-transparent:hover,
+  .btn-transparent:focus,
+  .btn-transparent:active {
+    background-color: rgba(108, 117, 125, 0.1); /* Slightly darkened transparent background on hover */
+    border-color: #6c757d;
+    color: #6c757d;
+  }

@@ -1,0 +1,26 @@
+<!-- src/app/components/login/login.component.html -->
+<div class="login-form">
+    <div class="title">
+      <h1>Admin Login</h1>
+    </div>
+  
+    <form [formGroup]="form" (ngSubmit)="login()">
+      <div class="container">
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Email" formControlName="email" required>
+  
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" formControlName="password" required>
+  
+        <button type="submit" class="btn" routerLink="/home">Login</button>
+        <label>
+          <input type="checkbox" formControlName="remember"> Remember me
+        </label>
+      </div>
+    </form>
+  
+    <div class="container" style="background-color:transparent">
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </div>
+  
