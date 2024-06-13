@@ -6,11 +6,13 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { Product } from '../models/product';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { AddproductComponent } from '../addproduct/addproduct.component';
+import { AllergensModalComponent } from '../../../admin_dashboard-main/src/app/allergens-modal/allergens-modal.component';
 
 @Component({
   selector: 'app-list-food',
   standalone: true,
-  imports: [CommonModule,TagModule,RatingModule,ButtonModule,TableModule,RouterOutlet,RouterLink],
+  imports: [CommonModule,TagModule,RatingModule,ButtonModule,TableModule,RouterOutlet,RouterLink,AddproductComponent,AllergensModalComponent],
   templateUrl: './list-food.component.html',
   styleUrl: './list-food.component.css'
 })
