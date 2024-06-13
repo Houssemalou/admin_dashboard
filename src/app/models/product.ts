@@ -7,3 +7,9 @@ export class Product{
     delivery_price!: number;
     category!: string;
 }
+export class Categorie{
+    id!: number;
+    name!: string;
+    description!:string;
+
+}

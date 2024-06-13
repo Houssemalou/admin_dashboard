@@ -5,19 +5,15 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { LoginComponent } from './login/login.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { ListFoodComponent } from './list-food/list-food.component';
+import { HomeComponent } from './home/home.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, UserDetailsComponent,LoginComponent,AddproductComponent, RouterLink, ListFoodComponent],
+  imports: [CommonModule, RouterOutlet, HomeComponent,LoginComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'admin_dashboard';
-  status = false;
-  addToggle()
-  {
-    this.status = !this.status;       
-  }
+
 }

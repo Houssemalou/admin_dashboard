@@ -3,7 +3,7 @@
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
                 Products
-                <p-button icon="pi pi-plus" />
+                <p-button routerLink="/addproduct" icon="pi pi-plus" />
             </div>
         </ng-template>
         <ng-template pTemplate="header">
@@ -21,7 +21,7 @@
             <tr>
                 <td>{{product.id}}</td>
                 <td>{{product.name}}</td>
-                <td><img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.name" width="100" class="shadow-4" /></td>
+                <td><img src="assets/téléchargement.jpg" [alt]="product.name" width="100" class="shadow-4" /></td>
                 <td>{{product.pickup_price | currency:'USD'}}</td>
                 <td>{{product.delivery_price | currency:'USD'}}</td>
                 <td>{{product.category}}</td>

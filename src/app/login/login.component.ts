@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { SignInModel } from '../models/client.model';
 import { LoginService } from './services/login.service';
 import { UserLogin } from '../models/userLogin';
 import { UserService } from '../services/userService/user.service';
+import { HomeComponent } from '../home/home.component';
 
 
 
 @Component({
   standalone:true,
-  imports:[ FormsModule, ReactiveFormsModule,],
+  imports:[ FormsModule, ReactiveFormsModule,RouterLink,RouterOutlet,HomeComponent],
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'

@@ -5,11 +5,12 @@ import { RatingModule } from 'primeng/rating';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { Product } from '../models/product';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-list-food',
   standalone: true,
-  imports: [CommonModule,TagModule,RatingModule,ButtonModule,TableModule],
+  imports: [CommonModule,TagModule,RatingModule,ButtonModule,TableModule,RouterOutlet,RouterLink],
   templateUrl: './list-food.component.html',
   styleUrl: './list-food.component.css'
 })
