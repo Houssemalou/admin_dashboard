@@ -1,17 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryControllerService } from '../services/services';
 import { Category } from '../services/models';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-categorie-modal',
+  standalone:true,
+  imports:[FormsModule],
   templateUrl: './categorie-modal.component.html',
   styleUrls: ['./categorie-modal.component.css']
 })
 export class CategorieModalComponent implements OnInit {
 
   categories: Category[] = [];
-  newCategory: Partial<Category> = {}; // 
+   newCategory: Category = {
+    description: '',
+    foodItems: [],
+    id: undefined,
+    name: ''
+  };
 
   constructor(private categoryService: CategoryControllerService) { }
 
@@ -34,8 +42,10 @@ export class CategorieModalComponent implements OnInit {
 
   addCategory() {
     if (this.newCategory.name) { 
+     
       this.categoryService.createCategory({ body: this.newCategory }).subscribe(
         newCategory => {
+          console.log(newCategory)
           this.categories.push(newCategory);
           this.newCategory = {}; 
         },
@@ -80,5 +90,7 @@ export class CategorieModalComponent implements OnInit {
       }
     );
   }}
-
+  onSubmit(){
+    console.log(this.newCategory)
+  }
 }
