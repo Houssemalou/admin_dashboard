@@ -1,0 +1,30 @@
+<div class="card">
+    <p-table [value]="categoriesList" [tableStyle]="{'min-width': '60rem'}" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,20]" >
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                categories
+                <p-button routerLink="/categoriemodal" icon="pi pi-plus" />
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+             <th>Description</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-categorie>
+            <tr>
+                <td>{{categorie.id}}</td>
+                <td>{{categorie.name}}</td>
+                <td>{{categorie.name}}</td>
+      
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                In total there are {{categoriesList ? categoriesList.length : 0 }} products.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
