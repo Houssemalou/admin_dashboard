@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
-import { SignInModel } from '../models/client.model';
-import { LoginService } from './services/login.service';
 import { UserLogin } from '../models/userLogin';
-import { UserService } from '../services/userService/user.service';
 import { HomeComponent } from '../home/home.component';
 
 
@@ -24,7 +21,7 @@ export class LoginComponent {
   response!: string;
   
   
-  constructor(private userService : UserService,private router : Router){}
+  constructor(private router : Router){}
   
   form = new FormGroup({
    email: new FormControl('', [Validators.required, Validators.email]),
@@ -33,7 +30,7 @@ export class LoginComponent {
 
 
   login(){
-    this.submitted = true;
+    /*this.submitted = true;
     const user: UserLogin = {
       email:this.form.value.email,
       password: this.form.value.password
@@ -51,8 +48,9 @@ export class LoginComponent {
             // Show error message
             this.errorMessage = response.message;
           }
-        });
+        });*/
       
     }
-  }
+  
 }
+
