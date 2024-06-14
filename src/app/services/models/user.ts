@@ -5,7 +5,7 @@ export interface User {
   accountNonExpired?: boolean;
   accountNonLocked?: boolean;
   authorities?: Array<GrantedAuthority>;
-  creationDate?: string;
+  creationDate?: Date;
   credentialsNonExpired?: boolean;
   email?: string;
   enabled?: boolean;

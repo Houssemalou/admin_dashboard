@@ -11,7 +11,8 @@
         [tableStyle]="{ 'min-width': '55rem' }"
     >
     <ng-template pTemplate="caption">
-        <div class="flex">
+        <div class="flex align-items-center justify-content-between">
+            <app-add-admin></app-add-admin>
             <p-iconField iconPosition="left" class="ml-auto">
                 <p-inputIcon>
                     <i class="pi pi-search"></i>
@@ -19,7 +20,7 @@
                 <input 
                     pInputText 
                     type="text" 
-                    (input)="dt2.filterGlobal($event.target  , 'contains')" 
+                    (input)="dt2.filterGlobal($event.target , 'contains')" 
                     placeholder="Search keyword" />
             </p-iconField>
         </div>
@@ -30,6 +31,7 @@
             <th style="width:22%">firstName</th>
             <th style="width:22%">lastName</th>
             <th style="width:22%">email</th>
+            <th style="width:22%">action</th>
             
             
         </tr>
@@ -56,8 +58,11 @@
                     {{ customer.email }}
                 </span>
             </td>
-           
-            
+            <td>
+                <span class="ml-1 vertical-align-middle">
+                    <app-dalete-admin></app-dalete-admin>
+                </span>
+            </td>
         </tr>
     </ng-template>
     <ng-template pTemplate="emptymessage">

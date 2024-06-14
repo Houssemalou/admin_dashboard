@@ -3,6 +3,9 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UserLogin } from '../models/userLogin';
 import { HomeComponent } from '../home/home.component';
+import { AuthenticationControllerService } from '../services/services';
+import { AuthenticationRequest } from '../services/models';
+import { TokenService } from '../services/token/token.service';
 
 
 
@@ -15,13 +18,13 @@ import { HomeComponent } from '../home/home.component';
 })
 export class LoginComponent {
   
-  authenticatedUser!: UserLogin;
+  authenticatedUser!: AuthenticationRequest;
   submitted: boolean = false;
   errorMessage!: string | undefined;
   response!: string;
   
   
-  constructor(private router : Router){}
+  constructor(private router : Router, private authService : AuthenticationControllerService, private tokenService : TokenService){}
   
   form = new FormGroup({
    email: new FormControl('', [Validators.required, Validators.email]),
@@ -30,27 +33,26 @@ export class LoginComponent {
 
 
   login(){
-    /*this.submitted = true;
-    const user: UserLogin = {
-      email:this.form.value.email,
-      password: this.form.value.password
+      this.submitted = true;
+      this.authenticatedUser = {
+      email:this.form.value.email as string,
+      password: this.form.value.password as string
     };
     if (this.form.invalid) {
         return;
     }else{
-      this.userService.login(user).subscribe(
-        response => {
-          if (response) {
-            console.log(response.token);
-            // Successfully logged in, redirect to home page or any other page
-            //this.router.navigate(['/home']);
-          } else {
-            // Show error message
-            this.errorMessage = response.message;
-          }
-        });*/
-      
+      this.router.navigate(['sidebar']);
+      /*this.authService.authenticate({
+        body: this.authenticatedUser
+      }).subscribe({
+        next: (res) => {
+          this.tokenService.token = res.token as string;
+          this.router.navigate(['sidebar']);
+        },
+        error:(err) => {console.log(err);}
+      })*/
+    
     }
-  
+  }
 }
 

@@ -11,20 +11,20 @@ import { CommonModule } from '@angular/common';
 import { Role, UserOr } from '../models/user';
 import { UserControllerService } from '../services/services';
 import { User } from '../services/models';
-
-
+import { DaleteAdminComponent } from '../dalete-admin/dalete-admin.component';
+import { AddAdminComponent } from '../add-admin/add-admin.component';
 
 @Component({
-  selector: 'app-user-details',
+  selector: 'app-admin-details',
   standalone: true,
-  imports: [ HttpClientModule, CommonModule, TableModule, TagModule, IconFieldModule, InputIconModule, InputTextModule,MultiSelectModule,DropdownModule],
-  templateUrl: './user-details.component.html',
-  styleUrl: './user-details.component.css',
+  imports: [AddAdminComponent,DaleteAdminComponent, HttpClientModule, CommonModule, TableModule, TagModule, IconFieldModule, InputIconModule, InputTextModule,MultiSelectModule,DropdownModule],
+  templateUrl: './admin-details.component.html',
+  styleUrl: './admin-details.component.css',
   providers:[UserControllerService]
 })
-export class UserDetailsComponent implements OnInit {
-  
-    users : UserOr[]=[{
+export class AdminDetailsComponent {
+
+  users : UserOr[]=[{
     id: 100244,
     firstName : "alouka",
     lastName:"denidoph",
@@ -54,8 +54,6 @@ export class UserDetailsComponent implements OnInit {
     creationDate: new Date(24-2-2024).getFullYear()
   }
     ];
-
-    statuses!: any[];
 
     loading: boolean = false;
 
@@ -99,8 +97,6 @@ export class UserDetailsComponent implements OnInit {
               return null;
       }
   }
-
-
 
 
 

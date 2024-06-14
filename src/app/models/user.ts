@@ -1,9 +1,10 @@
-export class User{
+export class UserOr{
+    id?: number;
     firstName!: String;
     lastName!: String;
     email!: String;
-    role!: Role;
-    creationDate!: Date;
+    role?: Role;
+    creationDate!: number;
 }
 
 export enum Role{
