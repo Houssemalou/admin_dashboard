@@ -21,38 +21,38 @@ export class CategoriesComponent  implements OnInit{
   categoriesList: Categorie[] = [
     {
         id: 1,
-        name: "Product 1",
-        description: "Description for Product 1",
+        name: "categorie 1",
+        description: "Description for categorie 1",
    
     },
     {
         id: 2,
-        name: "Product 2",
-        description: "Description for Product 2",
+        name: "categorie 2",
+        description: "Description for categorie 2",
  
     },
     {
         id: 3,
-        name: "Product 3",
-        description: "Description for Product 3",
+        name: "categorie 3",
+        description: "Description for categorie 3",
        
     },
     {
         id: 4,
-        name: "Product 4",
-        description: "Description for Product 4",
+        name: "categorie 4",
+        description: "Description for categorie 4",
    
     },
     {
         id: 5,
-        name: "Product 5",
-        description: "Description for Product 5",
+        name: "categorie 5",
+        description: "Description for categorie 5",
        
     },
     {
         id: 6,
-        name: "Product 6",
-        description: "Description for Product 6",
+        name: "categorie 6",
+        description: "Description for categorie 6",
     
     }];
 

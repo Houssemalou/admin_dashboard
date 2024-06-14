@@ -6,10 +6,11 @@ import { Category } from '../services/models/category';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FileUploadService } from '../services/file/file-upload-service.service';
+import { AllergensModalComponent } from '../../../admin_dashboard-main/src/app/allergens-modal/allergens-modal.component';
 
 @Component({
   standalone:true,
-  imports:[RouterLink,RouterOutlet,CommonModule,FormsModule],
+  imports:[RouterLink,RouterOutlet,CommonModule,FormsModule,AllergensModalComponent],
   selector: 'app-addproduct',
   templateUrl: './addproduct.component.html',
   styleUrl: './addproduct.component.css',

@@ -2,14 +2,20 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 @Component({
   selector: 'app-allergens-modal',
   standalone:true,
-  imports:[FormsModule,CommonModule],
+  imports:[FormsModule,CommonModule,DialogModule,ButtonModule,InputTextModule, ToastModule],
   templateUrl: './allergens-modal.component.html',
   styleUrls: ['./allergens-modal.component.css']
 })
 export class AllergensModalComponent {
+  visible: boolean = false;
   cereals = [
     { id: 'barley', name: 'Barley', checked: false },
     { id: 'oats', name: 'Oats', checked: false },
@@ -49,8 +55,10 @@ export class AllergensModalComponent {
   noAllergens = false;
   selectedAllergens: string[]=["bhnj"];
 
-  constructor() {}
-
+  constructor(private messageService: MessageService) {}
+  showDialog() {
+    this.visible = true;
+}
   saveChanges(): void {
  
       this.selectedAllergens = [];
@@ -81,7 +89,8 @@ export class AllergensModalComponent {
         this.selectedAllergens.push("No allergens");
       }
     
-  
+      this.visible = false;
+      this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'User Add Succefully'})
       console.log(this.selectedAllergens);
    
     
