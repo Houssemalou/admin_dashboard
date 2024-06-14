@@ -1,5 +1,5 @@
 <div class="card">
-    <p-table [value]="categoriesList" [tableStyle]="{'min-width': '60rem'}" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,20]" >
+    <p-table [value]="categories" [tableStyle]="{'min-width': '60rem'}" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,20]" >
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
                 categories
@@ -18,12 +18,15 @@
                 <td>{{categorie.id}}</td>
                 <td>{{categorie.name}}</td>
                 <td>{{categorie.name}}</td>
+                <td>
+                <button (click)="updateCategory(categorie)">update</button></td>
+               <td> <button (click)="deleteCategory(categorie)">delete</button></td>
       
             </tr>
         </ng-template>
         <ng-template pTemplate="summary">
             <div class="flex align-items-center justify-content-between">
-                In total there are {{categoriesList ? categoriesList.length : 0 }} products.
+                In total there are {{categories ? categories.length : 0 }} products.
             </div>
         </ng-template>
     </p-table>

@@ -1,7 +1,6 @@
-/* tslint:disable */
-/* eslint-disable */
+
 export interface FoodProduct {
-  allergens?: 'ALLERGENS';
+  allergens?: 'barley'|'oats' |'spelt'|'kamut' |'rye'|'wheat'|'almonds' |'cashews' |'macadamia' |'pistachio nuts' |'walnuts' |'Brazil nuts'| 'hazel nuts' |'pecan nuts'|' Queensland nuts'|'Contains crustaceans and products thereof'|'Contains eggs and products thereof'|'Contains fish and products thereof'|'Contains peanuts and products thereof';
   delivery_price?: number;
   description?: string;
   id?: number;

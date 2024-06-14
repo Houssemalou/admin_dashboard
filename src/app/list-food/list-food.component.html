@@ -1,9 +1,12 @@
 <div class="card">
-    <p-table [value]="products" [tableStyle]="{'min-width': '60rem'}" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,20]" >
+    <!-- p-confirmDialog doit être placé à un niveau supérieur pour être accessible par le composant -->
+    <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+    <p-table [value]="products" [tableStyle]="{'min-width': '60rem'}" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,20]">
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
                 Products
-                <p-button routerLink="/sidebar/addproduct" icon="pi pi-plus" />
+                <p-button routerLink="/sidebar/addproduct" icon="pi pi-plus"></p-button>
             </div>
         </ng-template>
         <ng-template pTemplate="header">
@@ -25,7 +28,12 @@
                 <td>{{product.pickup_price | currency:'USD'}}</td>
                 <td>{{product.delivery_price | currency:'USD'}}</td>
                 <td>{{product.category}}</td>
-                <td><p-button>Edit</p-button></td>
+                <td>
+                    <p-button label="Update"></p-button>
+                </td>
+                <td>
+                    <p-button label="Delete" (click)="confirm(product)" icon="pi pi-trash" class="p-button-danger"></p-button>
+                </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="summary">

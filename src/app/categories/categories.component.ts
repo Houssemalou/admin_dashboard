@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { Categorie, Product } from '../models/product';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { CategoryControllerService } from '../services/services';
+import { Category } from '../services/models';
 @Component({
   standalone:true,
   imports: [CommonModule,TagModule,RatingModule,ButtonModule,TableModule,RouterOutlet,RouterLink],
@@ -14,7 +16,8 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.css'
 })
-export class CategoriesComponent {
+export class CategoriesComponent  implements OnInit{
+    categories: Category[] = [];
   categoriesList: Categorie[] = [
     {
         id: 1,
@@ -53,8 +56,39 @@ export class CategoriesComponent {
     
     }];
 
-  constructor() {}
+  constructor(private categoryService: CategoryControllerService) {}
+  ngOnInit(): void {
+    this.categoryService.getAllCategories().subscribe({
+      next: (categories) => {
+        this.categories = categories;
+      },
+      error: (error) => {
+        console.error('There was an error!', error);
+      }
+    });
+  }
+  updateCategory(updatedCategory: Category) {
+    if (updatedCategory.id!=null){
+    this.categoryService.updateCategory({ id: updatedCategory.id, body: updatedCategory }).subscribe(
+      updated => {
+        const index = this.categories.findIndex(c => c.id === updated.id);
+        if (index !== -1) {
+          this.categories[index] = updated;
+        }
+      },
+ 
+    );
+  }}
 
+  deleteCategory(category: Category) {
+    if (category.id!=null){
+    this.categoryService.deleteCategory({ id: category.id }).subscribe(
+      () => {
+        this.categories = this.categories.filter(c => c.id !== category.id);
+      },
+  
+    );
+  }}
   
 
   getSeverity(status: string) {

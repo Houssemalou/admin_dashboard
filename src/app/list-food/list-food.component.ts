@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { RatingModule } from 'primeng/rating';
@@ -8,17 +8,26 @@ import { Product } from '../models/product';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { AddproductComponent } from '../addproduct/addproduct.component';
 import { AllergensModalComponent } from '../../../admin_dashboard-main/src/app/allergens-modal/allergens-modal.component';
+import { FoodProductControllerService } from '../services/services';
+import { FoodProduct } from '../services/models/food-product';
+
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+
+import { ToastModule } from 'primeng/toast';
+
 
 @Component({
   selector: 'app-list-food',
   standalone: true,
-  imports: [CommonModule,TagModule,RatingModule,ButtonModule,TableModule,RouterOutlet,RouterLink,AddproductComponent,AllergensModalComponent],
+  imports: [CommonModule,TagModule,RatingModule,ButtonModule,TableModule,RouterOutlet,RouterLink,AddproductComponent,AllergensModalComponent,ConfirmDialogModule, ButtonModule, ToastModule],
+  providers: [ConfirmationService, MessageService],
   templateUrl: './list-food.component.html',
   styleUrl: './list-food.component.css'
 })
-export class ListFoodComponent {
-
-  products: Product[] = [
+export class ListFoodComponent implements OnInit  {
+    foodProducts: FoodProduct[] = [];
+  products: Product[] = [ 
     {
         id: 1,
         name: "Product 1",
@@ -74,9 +83,32 @@ export class ListFoodComponent {
         category: "Category C"
     }];
 
-  constructor() {}
+  constructor(private foodProductService : FoodProductControllerService,private confirmationService: ConfirmationService, private messageService: MessageService) {}
 
-  
+  ngOnInit(): void {
+    this.foodProductService.getAllFoodProducts().subscribe({
+      next: (products) => {
+        this.foodProducts = products;
+      },
+      error: (error) => {
+        console.error('There was an error!', error);
+      }
+    });
+  }
+  confirm(foodtodelete: FoodProduct) {
+    this.confirmationService.confirm({
+        header: 'Are you sure?',
+        message: 'Please confirm to proceed.',
+        accept: () => {
+            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
+            this.deleteFoodProduct(foodtodelete);
+        },
+        reject: () => {
+            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+        }
+    });
+}
+
 
   getSeverity(status: string) {
       switch (status) {
@@ -90,4 +122,25 @@ export class ListFoodComponent {
             return 'NULL';
       }
   }
+  deleteFoodProduct(foodtodelete: FoodProduct) {
+    if (foodtodelete.id!=null){
+    this.foodProductService.deleteFoodProduct({ id: foodtodelete.id }).subscribe(
+      () => {
+        this.foodProducts = this.foodProducts.filter(c => c.id !== foodtodelete.id);
+      },
+  
+    );
+  }}
+  updateCategory(foodtoupdate: FoodProduct) {
+    if (foodtoupdate.id!=null){
+    this.foodProductService.updateFoodProduct({ id: foodtoupdate.id, body: foodtoupdate }).subscribe(
+      updated => {
+        const index = this.foodProducts.findIndex(c => c.id === updated.id);
+        if (index !== -1) {
+          this.foodProducts[index] = updated;
+        }
+      },
+ 
+    );
+  }}
 }

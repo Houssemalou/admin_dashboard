@@ -21,7 +21,7 @@ export class CategorieModalComponent implements OnInit {
     name: ''
   };
 
-  constructor(private categoryService: CategoryControllerService) { }
+  constructor(private categoryService: CategoryControllerService,) { }
 
   ngOnInit(): void {
     this.loadCategories();
@@ -32,10 +32,7 @@ export class CategorieModalComponent implements OnInit {
       categories => {
         this.categories = categories;
       },
-      error => {
-        console.error('Error loading categories:', error);
   
-      }
     );
   }
 
@@ -49,10 +46,7 @@ export class CategorieModalComponent implements OnInit {
           this.categories.push(newCategory);
           this.newCategory = {}; 
         },
-        error => {
-          console.error('Error adding category:', error);
-        
-        }
+     
       );
     } else {
       console.error('Category name is required.');
@@ -61,35 +55,7 @@ export class CategorieModalComponent implements OnInit {
   }
 
 
-  updateCategory(updatedCategory: Category) {
-    if (updatedCategory.id!=null){
-    this.categoryService.updateCategory({ id: updatedCategory.id, body: updatedCategory }).subscribe(
-      updated => {
-        const index = this.categories.findIndex(c => c.id === updated.id);
-        if (index !== -1) {
-          this.categories[index] = updated;
-        }
-      },
-      error => {
-        console.error('Error updating category:', error);
-   
-      }
-    );
-  }}
 
-
-  deleteCategory(category: Category) {
-    if (category.id!=null){
-    this.categoryService.deleteCategory({ id: category.id }).subscribe(
-      () => {
-        this.categories = this.categories.filter(c => c.id !== category.id);
-      },
-      error => {
-        console.error('Error deleting category:', error);
-      
-      }
-    );
-  }}
   onSubmit(){
     console.log(this.newCategory)
   }

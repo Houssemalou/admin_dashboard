@@ -1,19 +1,18 @@
-
 <div class="container mt-5">
   <h4>Main information</h4>
   <form>
     <div class="row mb-3">
       <div class="col-md-6">
         <label for="name" class="form-label">Name (German only)</label>
-        <input type="text" class="form-control" id="name" placeholder="">
+        <input type="text" class="form-control" id="name" placeholder="" [(ngModel)]="foodItem.name" name="name">
       </div>
       <div class="col-md-6">
         <label for="category" class="form-label">Category</label>
-        <select class="form-select" id="category">
+        <select class="form-select" id="category"  name="category">
           <option selected>Select</option>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
+          <option *ngFor="let Categorie of categories" [value]="Categorie.id">
+            {{ Categorie.name }}
+          </option>
         </select>
       </div>
     </div>
@@ -21,7 +20,7 @@
     <div class="row mb-3">
       <div class="col-12">
         <label for="description" class="form-label">Description (German only)</label>
-        <textarea class="form-control" id="description" rows="3"></textarea>
+        <textarea class="form-control" id="description" rows="3" [(ngModel)]="foodItem.description" name="description"></textarea>
       </div>
     </div>
 
@@ -30,14 +29,14 @@
         <label for="deliveryPrice" class="form-label">Delivery price</label>
         <div class="input-group">
           <span class="input-group-text">€</span>
-          <input type="text" class="form-control" id="deliveryPrice">
+          <input type="text" class="form-control" id="deliveryPrice" [(ngModel)]="foodItem.delivery_price" name="deliveryPrice">
         </div>
       </div>
       <div class="col-md-6">
         <label for="pickupPrice" class="form-label">Pickup price</label>
         <div class="input-group">
           <span class="input-group-text">€</span>
-          <input type="text" class="form-control" id="pickupPrice">
+          <input type="text" class="form-control" id="pickupPrice" [(ngModel)]="foodItem.pickup_price" name="pickupPrice">
         </div>
       </div>
     </div>
@@ -45,17 +44,16 @@
     <div class="row mb-3">
       <div class="col-md-6">
         <label for="itemType" class="form-label">Item type</label>
-        <select class="form-select" id="itemType">
+        <select class="form-select" id="itemType" [(ngModel)]="foodItem.itemType" name="itemType">
           <option selected>Select</option>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
+          <option value="NO_ALCOOL">No Alcohol</option>
+          <option value="WITH_ALCOOL">With Alcohol</option>
         </select>
       </div>
       <div class="col-md-6">
         <label for="allergens" class="form-label">Allergens</label>
         <div class="input-group">
-          <input type="text" class="form-control" id="allergens" placeholder="" readonly>
+          <input type="text" class="form-control" id="allergens" placeholder="" readonly [(ngModel)]="foodItem.allergens" name="allergens">
           <button class="btn btn-outline-secondary" type="button" routerLink="/sidebar/allergene">
             <i class="bi bi-pencil"></i>
           </button>
@@ -63,8 +61,14 @@
       </div>
     </div>
 
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="image" class="form-label">Image</label>
+        <input type="file" class="form-control" id="image" name="image" (change)="onFileSelected($event)">
+      </div>
+  
+    </div>
 
-
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" (click)="submit()">Submit</button>
   </form>
 </div>
